@@ -19,4 +19,6 @@ public interface BookService {
 
 	List<BookEntity> findBookByPrice(Double price) throws Exception ;
 
+	List<BookEntity> getAllBooks();
+
 }

@@ -52,4 +52,10 @@ public class BookController {
 		List<BookEntity> bookEntityList = bookService.findBookByPrice(price);
 		return new ResponseEntity<List<BookEntity>>(bookEntityList, HttpStatus.OK);
 	}
+	
+	@GetMapping("getAllBooks")
+	public ResponseEntity<List<BookEntity>> getAllBooks() throws Exception  {
+		List<BookEntity> bookEntityList = bookService.getAllBooks();
+		return new ResponseEntity<List<BookEntity>>(bookEntityList, HttpStatus.OK);
+	}
 }
