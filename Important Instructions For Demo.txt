@@ -1,0 +1,112 @@
+Angular Application URL:
+
+http://flight-management.s3-website.ap-south-1.amazonaws.com/home
+
+Endpoints
+
+----Kafka Cluster
+
+ec2-54-213-86-118.us-west-2.compute.amazonaws.com
+
+----Eureka server and spring cloud gateway
+
+ec2-54-200-45-97.us-west-2.compute.amazonaws.com
+
+----flight-admin-service and flight-management-admin-command
+
+ec2-34-213-255-123.us-west-2.compute.amazonaws.com
+
+----flight-kafka-client
+
+ec2-35-88-39-240.us-west-2.compute.amazonaws.com
+
+
+bin/kafka-topics.sh --create --topic airline --bootstrap-server ec2-54-213-86-118.us-west-2.compute.amazonaws.com:9092
+bin/kafka-topics.sh --create --topic flight --bootstrap-server ec2-54-213-86-118.us-west-2.compute.amazonaws.com:9092
+
+
+
+///////////////////////////
+AWS Login
+/////////////////////////////
+
+nilesh.deshmukh2@mml.local
+
+TRk_csAg
+
+https://iihtedu.cloud.builder.ai/
+
+/////////////////////////////////////////////
+Instructions
+/////////////////////////////////////////////
+
+Install JAVA 11 on ec2 Instance:
+
+sudo amazon-linux-extras install java-openjdk11
+
+download file by 
+
+wget file_path_url
+
+//////////////////////////////////////////////////////////
+ANGULAR APPLICATION URL:
+
+http://flight-booking-website.s3-website.ap-south-1.amazonaws.com
+
+/////////////////////////////////////////////////////////////////////
+
+Amazon API Gateway URL
+
+https://e59pimaw5b.execute-api.us-west-2.amazonaws.com/flight-admin-services/
+
+Swagger Documentation UI Link
+https://e59pimaw5b.execute-api.us-west-2.amazonaws.com/flight-admin-services/swagger-ui/index.html
+
+
+MySQL :
+flight-management.cpoxfu0jjacv.us-west-2.rds.amazonaws.com
+user: admin
+password: flight-booking123
+
+
+KAFKA CLUSTER SERVER ENDPOINT:
+
+(https://dzone.com/articles/installing-and-running-kafka-on-an-aws-instance)
+
+ec2-54-213-86-118.us-west-2.compute.amazonaws.com
+
+IMP Commands
+
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties > ~/zookeeper-logs &
+nohup bin/kafka-server-start.sh config/server.properties > ~/kafka-logs &
+
+sh kafka-server-start.sh
+sh kafka-server-stop.sh
+
+sh zookeeper-server-start.sh
+sh zookeeper-server-stop.sh
+
+
+/////////////////////////////////////////////////////////////
+Eureka server and spring cloud gateway
+
+ec2-34-215-89-78.us-west-2.compute.amazonaws.com
+
+nohup java -jar flight-management-eureka-server-0.0.1-SNAPSHOT.jar > ~/eureka-logs &
+nohup java -jar flight-management-gateway-0.0.1-SNAPSHOT.jar > ~/spring-gateway-logs &
+
+////////////////////////////////////////////////////
+flight-admin-service and flight-management-admin-command
+
+ec2-52-40-49-79.us-west-2.compute.amazonaws.com
+
+nohup java -jar flight-admin-service-0.0.1-SNAPSHOT.jar > ~/flight-admin-service-logs &
+nohup java -jar flight-management-admin-command-0.0.1-SNAPSHOT.jar > ~/flight-management-admin-command-logs &
+
+//////////////////////////////////////////////////////////
+
+flight-kafka-client
+
+nohup java -jar flight-kafka-client-0.0.1-SNAPSHOT.jar > ~/kafka-client-logs &
+
+ec2-35-89-131-247.us-west-2.compute.amazonaws.com

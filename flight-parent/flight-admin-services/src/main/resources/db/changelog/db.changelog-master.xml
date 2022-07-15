@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.9.xsd">
+	<changeSet id="ddl01" author="test">
+		<createTable tableName="airline">
+			<column name="airline_id" type="int" autoIncrement="false">
+				<constraints primaryKey="true"
+					primaryKeyName="airline_id_pk" nullable="false" />
+			</column>
+			<column name="name" type="varchar(250)" />
+			<column name="contact" type="varchar(250)" />
+			<column name="address" type="varchar(250)" />
+			<column name="active" type="boolean"
+				defaultValueBoolean="true" />
+		</createTable>
+		<createTable tableName="flight">
+			<column name="flight_id" type="int" autoIncrement="false">
+				<constraints primaryKey="true"
+					primaryKeyName="flight_id_pk" nullable="false" />
+			</column>
+			<column name="airline_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_airline_id" references="airline(airline_id)" />
+			</column>
+			<column name="name" type="varchar(250)" />
+			<column name="way_type" type="varchar(250)" />
+			<column name="from_location" type="varchar(250)" />
+			<column name="to_location" type="varchar(250)" />
+			<column name="start_time" type="DATETIME" />
+			<column name="return_time" type="DATETIME" />
+			<column name="business_class_seats" type="int" />
+			<column name="business_class_cost" type="DOUBLE" />
+			<column name="non_business_class_seats" type="int" />
+			<column name="non_business_class_cost" type="DOUBLE" />
+		</createTable>
+		<createTable tableName="ticket_booking">
+			<column name="ticket_id" type="integer" autoIncrement="true">
+				<constraints primaryKey="true"
+					primaryKeyName="ticket_id_pk" nullable="false" />
+			</column>
+			<column name="flight_id" type="integer">
+				<constraints nullable="false"
+					foreignKeyName="fk_flight_id" references="flight(flight_id)" />
+			</column>
+			<column name="pnr" type="varchar(250)" />
+			<column name="user_name" type="varchar(250)" />
+			<column name="email" type="varchar(250)" />
+			<column name="seat_type" type="varchar(250)" />
+			<column name="meal_type" type="varchar(250)" />
+			<column name="total_cost" type="DOUBLE" />
+			<column name="cancelled" type="boolean" />
+		</createTable>
+		<createTable tableName="passenger_details">
+			<column name="passenger_id" type="integer"
+				autoIncrement="true">
+				<constraints primaryKey="true"
+					primaryKeyName="passenger_id_pk" nullable="false" />
+			</column>
+			<column name="ticket_id" type="integer">
+				<constraints nullable="false"
+					foreignKeyName="fk_ticket_id"
+					references="ticket_booking(ticket_id)" />
+			</column>
+			<column name="name" type="varchar(250)" />
+			<column name="gender" type="varchar(250)" />
+			<column name="age" type="integer" />
+		</createTable>
+		<createTable tableName="admin_user">
+			<column name="user_id" type="integer" autoIncrement="true">
+				<constraints primaryKey="true"
+					primaryKeyName="user_id_pk" nullable="false" />
+			</column>
+			<column name="user_name" type="varchar(250)" />
+			<column name="password" type="varchar(250)" />
+			<column name="role" type="varchar(250)" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

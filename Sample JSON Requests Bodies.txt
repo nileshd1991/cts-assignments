@@ -1,0 +1,209 @@
+//Login Admin User
+{
+	"user_name":"nilesh",
+	"password":"123123"
+}
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWxlc2giLCJpYXQiOjE2NTY4MzkzNzMsImV4cCI6MTY1Njg3NTM3M30.OP3vtBtM161csNRNaXV_u26OxR8vqg_4BcyBdQ8RcW0
+
+//Add Airlines
+
+{
+  "name": "Air India",
+  "contact": "9898989898",
+  "address": "Mumbai"
+}
+
+{
+  "name": "Indian Airlines",
+  "contact": "8989898989",
+  "address": "Pune"
+}
+
+{
+  "name": "Vistara",
+  "contact": "7878787878",
+  "address": "Pune"
+}
+
+{
+  "name": "Indigo",
+  "contact": "8787878787",
+  "address": "Banglore"
+}
+
+//Airline Flight Inventories
+07/07/2022 10:00:00 AM
+08/07/2022 08:00:00 AM
+{
+	"airline_id": "1",
+	"name": "f000",
+	"way_type": "Round trip",
+	"from_location": "Banglore",
+	"to_location": "Pune",
+	"start_time": "1657168200000",
+	"return_time": "1657247400000",
+	"business_class_seats": "20",
+	"business_class_cost": "25000",
+	"non_business_class_seats": "50",
+	"non_business_class_cost": "10000"
+}
+
+Saturday, July 9, 2022 8:00:00 AM GMT+05:30
+Sunday, July 10, 2022 8:00:00 AM GMT+05:30
+{
+	"airline_id": "1",
+	"name": "f001",
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1657333800000",
+	"return_time": "1657420200000",
+	"business_class_seats": "20",
+	"business_class_cost": "25000",
+	"non_business_class_seats": "50",
+	"non_business_class_cost": "10000"
+}
+Tuesday, July 12, 2022 11:00:00 AM GMT+05:30
+Wednesday, July 13, 2022 11:00:00 AM GMT+05:30
+{
+	"airline_id": "2",
+	"name": "f002",
+	"way_type": "Round trip",
+	"from_location": "Banglore",
+	"to_location": "Pune",
+	"start_time": "1657603800000",
+	"return_time": "1657690200000",
+	"business_class_seats": "20",
+	"business_class_cost": "25000",
+	"non_business_class_seats": "50",
+	"non_business_class_cost": "10000"
+}
+
+Friday, July 15, 2022 11:00:00 AM GMT+05:30
+Saturday, July 16, 2022 11:00:00 AM GMT+05:30
+{
+	"airline_id": "2",
+	"name": "f003",
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1657863000000",
+	"return_time": "1657949400000",
+	"business_class_seats": "20",
+	"business_class_cost": "25000",
+	"non_business_class_seats": "50",
+	"non_business_class_cost": "10000"
+}
+
+{
+	"airline_id": "3",
+	"name": "f004",
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1657863000000",
+	"return_time": "1657949400000",
+	"business_class_seats": "10",
+	"business_class_cost": "47000",
+	"non_business_class_seats": "48",
+	"non_business_class_cost": "25000"
+}
+
+{
+	"airline_id": "4",
+	"name": "f005",
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1657863000000",
+	"return_time": "1657949400000",
+	"business_class_seats": "20",
+	"business_class_cost": "85000",
+	"non_business_class_seats": "30",
+	"non_business_class_cost": "30000"
+}
+
+//Search Flight JSON
+Wednesday, June 29, 2022
+Tuesday, June 28, 2022
+-Wrong input
+{
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1656477000000",
+	"return_time": "1656390600000"
+}
+
+Tuesday, June 28, 2022
+Wednesday, June 29, 2022
+Wrong Input
+{
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1656390600000",
+	"return_time": "1656477000000"
+}
+
+Friday, July 15, 2022 
+Saturday, July 16, 2022 
+Correct Input
+{
+	"way_type": "One way",
+	"from_location": "Mumbai",
+	"to_location": "Pune",
+	"start_time": "1657859400000",
+	"return_time": "1657945800000"
+}
+
+//Book Ticket JSON
+
+{
+  "user_name": "Nilesh Deshmukh",
+  "email": "abc@gmail.com",
+  "seat_type": "Business Class",
+  "passenger_list": [
+    {
+      "name": "Nilesh Deshmukh",
+      "gender": "Male",
+      "age": 31
+    },
+    {
+      "name": "Test Test",
+      "gender": "Female",
+      "age": 25
+    },
+    {
+      "name": "Test1 Test1",
+      "gender": "Male",
+      "age": 30
+    }    
+  ],
+  "meal_type": "Veg"
+}
+
+{
+  "user_name": "Test User",
+  "email": "abc@gmail.com",
+  "seat_type": "Business Class",
+  "passenger_list": [
+    {
+      "name": "Nilesh Deshmukh",
+      "gender": "Male",
+      "age": 31
+    },
+    {
+      "name": "Test Test",
+      "gender": "Female",
+      "age": 25
+    },
+    {
+      "name": "Test1 Test1",
+      "gender": "Male",
+      "age": 30
+    }    
+  ],
+  "meal_type": "Veg"
+}

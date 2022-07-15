@@ -1,0 +1,767 @@
+openapi: 3.0.0
+info:
+  description: Flight Booking Application
+  version: 1.0.0
+  title: Flight Booking
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+security:
+  - basicAuth: []
+tags:
+  - name: airline
+    description: Operations about Airlines
+  - name: user
+    description: Operations about User
+  - name: admin
+    description: Operations about admin User
+paths:
+  /login:
+    post:
+      tags:
+        - admin
+      summary: Admin Login
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminUser"
+        description: Admin User Object
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /register:
+    post:
+      tags:
+        - airline
+      summary: Add new Airline
+      operationId: registerAirline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Airline"
+        description: Airline Object
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Airline"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/update/airline/{airline_id}":
+    put:
+      tags:
+        - airline
+      summary: Update Airline
+      operationId: updateAirline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Airline"
+        description: Airline Object
+        required: true
+      parameters:
+        - name: airline_id
+          in: path
+          description: Unique Airline ID
+          required: true
+          schema:
+            type: integer        
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Airline"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"                
+  "/airline/{airline_id}":
+    get:
+      tags:
+        - airline
+      summary: Get Airline
+      operationId: getAirline
+      parameters:
+        - name: airline_id
+          in: path
+          description: Unique Airline ID
+          required: true
+          schema:
+            type: integer        
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Airline"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /inventory/add:
+    post:
+      tags:
+        - airline
+      summary: Add new Airline inventory
+      operationId: addAirlineInventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Flight"
+        description: FlightObject
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flight"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/inventory/update/flight/{flight_id}":
+    put:
+      tags:
+        - airline
+      summary: Update Airline inventory
+      operationId: updateAirlineInventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Flight"
+        description: FlightObject
+        required: true
+      parameters:
+        - name: flight_id
+          in: path
+          description: Unique Flight ID
+          required: true
+          schema:
+            type: integer        
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flight"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"                
+  "/flight/{flight_id}":
+    get:
+      tags:
+        - user
+      summary: Get Airline inventory
+      operationId: getAirlineInventory
+      parameters:
+        - name: flight_id
+          in: path
+          description: Unique Flight ID
+          required: true
+          schema:
+            type: integer        
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flight"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"                  
+  "/inventory/{airline_id}":
+    get:
+      tags:
+        - airline
+      summary: Get Flight Inventories of Airline
+      operationId: getAirlineInventoryList
+      parameters:
+        - name: airline_id
+          in: path
+          description: Unique Airline ID
+          required: true
+          schema:
+            type: integer        
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Flight"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"                                  
+  /airlines:
+    get:
+      tags:
+        - airline
+      summary: Get list of airlines
+      operationId: getAirlines
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Airline"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/block/{airline_id}":
+    put:
+      tags:
+        - airline
+      summary: Block Airline
+      operationId: blockAirline
+      parameters:
+        - name: airline_id
+          in: path
+          description: Unique Airline ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/unblock/{airline_id}":
+    put:
+      tags:
+        - airline
+      summary: Unblock Airline
+      operationId: unBlockAirline
+      parameters:
+        - name: airline_id
+          in: path
+          description: Unique Airline ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /search:
+    post:
+      tags:
+        - user
+      summary: Search flight
+      operationId: searchFlight
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchFlight"
+        description: Flight Search Object
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SearchFlightResponse"
+        "400":
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/booking/{flight_id}":
+    post:
+      tags:
+        - user
+      summary: Book flight ticket
+      operationId: bookTicket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookFlightTicket"
+        description: BookFlightTicket Object
+        required: true
+      parameters: 
+        - name: flight_id
+          in: path
+          description: Unique Flight ID
+          required: true
+          schema:
+            type: integer      
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookFlightTicket"
+        "400":
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/ticket/{pnr}":
+    get:
+      tags:
+        - user
+      summary: Get Ticket Details
+      operationId: getTicketDetails 
+      parameters:
+        - name: pnr
+          in: path
+          description: Unique Ticket PNR
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookFlightTicket"          
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/booking/cancel/{pnr}":
+    delete:
+      tags:
+        - user
+      summary: Cancel flight ticket
+      operationId: cancelFlightTicket 
+      parameters:
+        - name: pnr
+          in: path
+          description: Unique Ticket PNR
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  "/booking/history/{email_id}":
+    get:
+      tags:
+        - user
+      summary: Get Ticket Booking History of User
+      operationId: getTicketBookingHistory
+      parameters:
+        - name: email_id
+          in: path
+          description: Email Id of user
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookFlightTicket"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+servers:
+  - url: https://localhost/api/v1/flight
+  - url: http://localhost/api/v1/flight
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+    BookFlightTicket:
+      type: object
+      properties:
+        ticket_id:
+          type: integer
+        user_name:
+          type: string
+        email:
+          type: string
+        seat_type:
+          type: string
+          enum: 
+          - Business Class
+          - Non business Class
+        passenger_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/PassengerDetails" 
+        total_cost:
+          type: double
+        meal_type:
+          type: string
+          enum: 
+          - Veg
+          - Non veg
+        pnr:
+          type: string
+        cancelled:
+          type: boolean
+        booked_flight_details:
+          $ref: "#/components/schemas/BookedFlightDetails"             
+    PassengerDetails:
+      type: object
+      properties:
+        name:
+          type: string
+        gender:
+          type: string
+        age:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+        status_code:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_name:
+          type: string
+          description: Airline Name
+        password:
+          type: string
+          description: Airline Name
+        token:
+          type: string
+          description: Token
+    BookedFlightDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+        airline_id:
+          type: integer
+        airline_name:
+          type: string
+          description: Airline Name
+        name:
+          type: string
+          description: Flight Name
+        way_type:
+          type: string
+          description: Way type
+        from_location:
+          type: string
+          description: From Location
+        to_location:
+          type: string
+          description: To Location
+        start_time:
+          type: integer
+          format: int64
+        return_time:
+          type: integer
+          format: int64
+    SearchFlightResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        airline_id:
+          type: integer
+        airline_name:
+          type: string
+          description: Airline Name
+        name:
+          type: string
+          description: Flight Name
+        way_type:
+          type: string
+          description: Way type
+        from_location:
+          type: string
+          description: From Location
+        to_location:
+          type: string
+          description: To Location
+        start_time:
+          type: integer
+          format: int64
+        return_time:
+          type: integer
+          format: int64
+        business_class_seats:
+          type: integer
+          description: No of business class seats
+        business_class_cost:
+          type: integer
+          description: Cost fof business class seat
+        non_business_class_seats:
+          type: integer
+          description: No of business class seats
+        non_business_class_cost:
+          type: integer
+          description: Cost fof business class seat
+    SearchFlight:
+      type: object
+      properties:
+        way_type:
+          type: string
+          description: Way type
+          enum:
+            - One way
+            - Round trip
+        from_location:
+          type: string
+          description: From Location
+        to_location:
+          type: string
+          description: To Location
+        start_time:
+          type: integer
+          format: int64
+        return_time:
+          type: integer
+          format: int64
+    Airline:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Airline Name
+        contact:
+          type: string
+          description: Airline Contact
+        address:
+          type: string
+          description: Airline Address
+        active:
+          type: boolean
+          description: Airline active/blocked
+    Flight:
+      type: object
+      properties:
+        id:
+          type: integer
+        airline_id:
+          type: integer
+        name:
+          type: string
+          description: Flight Name
+        way_type:
+          type: string
+          description: Way type
+          enum:
+            - One way
+            - Round trip
+        from_location:
+          type: string
+          description: From Location
+        to_location:
+          type: string
+          description: To Location
+        start_time:
+          type: integer
+          format: int64
+        return_time:
+          type: integer
+          format: int64
+        business_class_seats:
+          type: integer
+          description: No of business class seats
+        business_class_cost:
+          type: number
+          format: double
+          description: Cost fof business class seat
+        non_business_class_seats:
+          type: integer
+          description: No of business class seats
+        non_business_class_cost:
+          type: number
+          format: double
+          description: Cost fof business class seat
